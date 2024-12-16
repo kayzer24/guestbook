@@ -4,6 +4,7 @@ namespace App;
 
 use App\Entity\Comment;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class SpamChecker
@@ -21,6 +22,7 @@ class SpamChecker
      * @return int Spam score: 0: not spam, 1: maybe spam, 2: blatant spam
      *
      * @throws \RuntimeException if the call did not work
+     * @throws TransportExceptionInterface
      */
     public function getSpamScore(Comment $comment, array $context): int
     {
